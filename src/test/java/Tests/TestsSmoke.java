@@ -360,16 +360,6 @@ public class TestsSmoke {
         ProfilePage.verifyThatConnectBlogEnabled();
     }
 
-    @Features("Reviews")
-    @Stories("User should see error message when tries to continue reviewing without setting of rate")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void shouldSeeErrorMessageWhenNoStarsSetInReview() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        ReviewPage.clickOnNextButton();
-        ReviewPage.verifyThatNoRateErrorMessageIsDisplayed();
-    }
-
     @Features("Hamburger")
     @Stories("User should be able to open hamburger menu")
     @Severity(SeverityLevel.BLOCKER)
