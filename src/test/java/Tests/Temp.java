@@ -33,9 +33,8 @@ public class Temp {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void a_shouldBeAbleToAddLoveInReview() {
-        Environments.goTo(Environments.BASE_URL);
-        Environments.logIn();
         Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
+        Environments.logIn();
         ReviewPage.loveReview();
         ReviewPage.verifyThatLovesCounterIsIncreased();
     }
@@ -45,9 +44,8 @@ public class Temp {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void b_shouldBeAbleToDeleteLoveInReview() {
-        Environments.goTo(Environments.BASE_URL);
-        Environments.logIn();
         Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
+        Environments.logIn();
         ReviewPage.unLoveReview();
         ReviewPage.verifyThatLovesCounterIsDecreased();
     }
@@ -62,5 +60,15 @@ public class Temp {
         ReviewPage.clickOnNextButton();
         ReviewPage.clickOnSubmitMyReviewButton();
         ReviewPage.verifyThatNoTextErrorMessageIsDisplayed();
+    }
+
+    @Features("Reviews")
+    @Stories("User should see error message when tries to continue reviewing without setting of rate")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void shouldSeeErrorMessageWhenNoStarsSetInReview() {
+        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
+        ReviewPage.clickOnNextButton();
+        ReviewPage.verifyThatNoRateErrorMessageIsDisplayed();
     }
 }
