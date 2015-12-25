@@ -3,10 +3,7 @@ package Tests;
 import Common.Environments;
 import Common.TestHelper;
 import PageObjects.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Severity;
@@ -15,6 +12,13 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Temp {
+    @BeforeClass
+    public static void setPrecondition() {
+        TestHelper.runDriverFullscreen("firefox");
+        Environments.createMailBox();
+        Environments.passRegistration();
+        TestHelper.quit();
+    }
     @Before
     public void setUp() {
         TestHelper.runDriverFullscreen("firefox");
@@ -29,39 +33,34 @@ public class Temp {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void a_shouldBeAbleToAddLoveInReview() {
+        Environments.goTo(Environments.BASE_URL);
+        Environments.logIn();
         Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        HomePage.clickOnLogInButton();
-        AuthorizationPage.fillInputLogin("20151225183833@mailforspam.com");
-        AuthorizationPage.fillInputPassword(Environments.validPassword);
-        AuthorizationPage.submitAuthorization();
         ReviewPage.loveReview();
         ReviewPage.verifyThatLovesCounterIsIncreased();
     }
-    @Features("Comments")
-    @Stories("User should be able to leave comments in articles")
-    @Severity(SeverityLevel.CRITICAL)
-    @Test
-    public void a_shouldBeAbleToAddCommentInArticle() {
-        Environments.goTo(Environments.BASE_URL + Environments.ARTICLE);
-        HomePage.clickOnLogInButton();
-        AuthorizationPage.fillInputLogin("20151225183833@mailforspam.com");
-        AuthorizationPage.fillInputPassword(Environments.validPassword);
-        AuthorizationPage.submitAuthorization();
-        ArticlePage.fillTextAreaByComment();
-        ArticlePage.clickOnPostMyCommentButton();
-        ArticlePage.verifyThatCommentIsAdded();
-    }
+
     @Features("Loves")
     @Stories("User should be able to unlove in review")
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void b_shouldBeAbleToDeleteLoveInReview() {
+        Environments.goTo(Environments.BASE_URL);
+        Environments.logIn();
         Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        HomePage.clickOnLogInButton();
-        AuthorizationPage.fillInputLogin("20151225183833@mailforspam.com");
-        AuthorizationPage.fillInputPassword(Environments.validPassword);
-        AuthorizationPage.submitAuthorization();
         ReviewPage.unLoveReview();
         ReviewPage.verifyThatLovesCounterIsDecreased();
+    }
+
+    @Features("Reviews")
+    @Stories("User should see error message when tries to continue reviewing without filling of textarea")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test
+    public void shouldSeeErrorMessageWhenNoTextInTextarea() {
+        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
+        ReviewPage.setRate();
+        ReviewPage.clickOnNextButton();
+        ReviewPage.clickOnSubmitMyReviewButton();
+        ReviewPage.verifyThatNoTextErrorMessageIsDisplayed();
     }
 }

@@ -384,18 +384,6 @@ public class TestsSmoke {
         ReviewPage.verifyThatNoRateErrorMessageIsDisplayed();
     }
 
-    @Features("Reviews")
-    @Stories("User should see error message when tries to continue reviewing without filling of textarea")
-    @Severity(SeverityLevel.CRITICAL)
-    @Test
-    public void shouldSeeErrorMessageWhenNoTextInTextarea() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        ReviewPage.setRate();
-        ReviewPage.clickOnNextButton();
-        ReviewPage.clickOnSubmitMyReviewButton();
-        ReviewPage.verifyThatNoTextErrorMessageIsDisplayed();
-    }
-
     @Features("Hamburger")
     @Stories("User should be able to open hamburger menu")
     @Severity(SeverityLevel.BLOCKER)
@@ -415,27 +403,5 @@ public class TestsSmoke {
         HomePage.clickOnHamburgerMenuButton();
         HomePage.clickOnCloseHamburgerMenuButton();
         HomePage.verifyThatHamburgerMenuIsNotDisplay();
-    }
-
-    @Features("Loves")
-    @Stories("User should be able to add loves in review")
-    @Severity(SeverityLevel.CRITICAL)
-    @Test
-    public void a_shouldBeAbleToAddLoveInReview() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        Environments.logIn();
-        ReviewPage.loveReview();
-        ReviewPage.verifyThatLovesCounterIsIncreased();
-    }
-
-    @Features("Loves")
-    @Stories("User should be able to unlove in review")
-    @Severity(SeverityLevel.CRITICAL)
-    @Test
-    public void b_shouldBeAbleToDeleteLoveInReview() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        Environments.logIn();
-        ReviewPage.unLoveReview();
-        ReviewPage.verifyThatLovesCounterIsDecreased();
     }
 }
