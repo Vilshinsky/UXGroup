@@ -7,23 +7,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class AuthorizationPage {
     public static String xpathInputLogin = "//*[@id='edit-name']";
     public static String xpathInputPassword = "//*[@id='edit-pass']";
+    public static String xpathRememberMeButton = "//*[@id='edit-remember-me']";
     public static String xpathSubmitButton = "//*[@id='edit-submit']";
     public static String xpathButtonFacebookSignIn = "//a[contains(@class,'button-primary facebook')]";
     public static String xpathLinkForgotPassword = "//a[contains(@title,'user/password')]";
 
     @Step("Fill Email input with valid value.")
     public static void fillInputLogin(String login) {
-        TestHelper.waitXpathElement(AuthorizationPage.xpathInputLogin).sendKeys(login);
+        TestHelper.waitXpathElement(xpathInputLogin).sendKeys(login);
     }
     @Step("Fill Password input with valid value.")
     public static void fillInputPassword(String password) {
-        TestHelper.waitXpathElement(AuthorizationPage.xpathInputPassword).sendKeys(password);
+        TestHelper.waitXpathElement(xpathInputPassword).sendKeys(password);
     }
     @Step("Click on Submit button.")
     public static void submitAuthorization() {
-        TestHelper.waitXpathElement(AuthorizationPage.xpathSubmitButton).isDisplayed();
-        TestHelper.waitXpathElement(AuthorizationPage.xpathSubmitButton).isEnabled();
-        TestHelper.waitXpathElement(AuthorizationPage.xpathSubmitButton).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathSubmitButton).isEnabled()) {
+                TestHelper.waitXpathElement(xpathSubmitButton).click();
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
         TestHelper.longWaitXpathElement("//*[contains(@class,'wl-user-menu')]//*[contains(@class,'user-picture')]");
     }
     @Step("Make sure that welcome message appeared.")

@@ -41,6 +41,7 @@ public class Environments {
         }
         TestHelper.waitXpathElement("//*[contains(text(),'White')]").click();
         TestHelper.waitXpathElement("//a[contains(@href,'.com/user/confirmaccount')]").click();
+        TestHelper.waitXpathElement("//*[@class='row registration-successful-dialog']");
     }
     public static void passRegistration() {
         goTo(BASE_URL);

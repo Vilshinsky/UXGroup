@@ -2,9 +2,7 @@ package Tests;
 
 import Common.Environments;
 import Common.TestHelper;
-import PageObjects.HomePage;
-import PageObjects.RegistrationPage;
-import PageObjects.ReviewPage;
+import PageObjects.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +18,14 @@ public class Temp {
     }
 
     @Test
-    public void shouldSeeErrorMessageWhenNoTextInTextarea() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        ReviewPage.setRate();
-        ReviewPage.clickOnNextButton();
-        ReviewPage.clickOnSubmitMyReviewButton();
-        ReviewPage.verifyThatNoTextErrorMessageIsDisplayed();
+    public void a_shouldBeAbleToAddCommentInArticle() {
+        Environments.goTo(Environments.BASE_URL + Environments.ARTICLE);
+        HomePage.clickOnLogInButton();
+        AuthorizationPage.fillInputLogin("20151225183833@mailforspam.com");
+        AuthorizationPage.fillInputPassword(Environments.validPassword);
+        AuthorizationPage.submitAuthorization();
+        ArticlePage.fillTextAreaByComment();
+        ArticlePage.clickOnPostMyCommentButton();
+        ArticlePage.verifyThatCommentIsAdded();
     }
 }

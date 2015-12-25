@@ -13,14 +13,14 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 public class TestsSmoke {
     @BeforeClass
     public static void setPrecondition() {
-        TestHelper.runDriverFullscreen("firefox");
+        TestHelper.runDriverFullscreen("chrome");
         Environments.createMailBox();
         Environments.passRegistration();
         TestHelper.quit();
     }
     @Before
     public void setUp() {
-        TestHelper.runDriverFullscreen("firefox");
+        TestHelper.runDriverFullscreen("chrome");
     }
     @After
     public void tearDown() {

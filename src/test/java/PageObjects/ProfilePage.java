@@ -24,8 +24,6 @@ public class ProfilePage {
     public static String xpathButtonConnectTwitter = "//a[contains(@class,'social-btn-connect twitter')]";
     public static String xpathButtonConnectBlog = "//a[contains(@href,'/blog')]";
 
-    public static int checkpointForPickUpPassword = 0;
-
     @Step("Click on Comments section link in profile.")
     public static void goToCommentsSection() {
         TestHelper.waitXpathElement(xpathLinkToCommentsSection).click();
