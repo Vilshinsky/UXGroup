@@ -21,12 +21,26 @@ public class HomePage {
 
     @Step("Click on Register button.")
     public static void clickOnRegisterButton() {
-        TestHelper.waitXpathElement(HomePage.xpathButtonRegistration).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathButtonRegistration).isEnabled() &&
+                    TestHelper.waitXpathElement(xpathButtonRegistration).isDisplayed()) {
+                TestHelper.waitXpathElement(xpathButtonRegistration).click();
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
 
     @Step("Click on Log In button.")
     public static void clickOnLogInButton() {
-        TestHelper.waitXpathElement(HomePage.xpathButtonLogin).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathButtonLogin).isEnabled() &&
+                    TestHelper.waitXpathElement(xpathButtonLogin).isDisplayed()) {
+                TestHelper.waitXpathElement(xpathButtonLogin).click();
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
 
     @Step("Click on My profile button.")
