@@ -65,17 +65,31 @@ public class ReviewPage {
     }
     @Step("Add Love in review.")
     public static void loveReview() {
-        TestHelper.scrollPage(400);
+        TestHelper.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
         TestHelper.waitXpathElement(xpathButtonLoveReview).click();
-        TestHelper.waitSec(1);
+        int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        for(int i = 0; i < 450; i++) {
+            if(getInt > initialLoveCounterReview) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+            getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        }
     }
     @Step("Remove love in review.")
     public static void unLoveReview() {
-        TestHelper.scrollPage(400);
+        TestHelper.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
         TestHelper.waitXpathElement(xpathButtonUnLoveReview).click();
-        TestHelper.waitSec(1);
+        int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        for(int i = 0; i < 450; i++) {
+            if(getInt < initialLoveCounterReview) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+            getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        }
     }
 
     @Step("Verify that loves counter in review is increased by 1")

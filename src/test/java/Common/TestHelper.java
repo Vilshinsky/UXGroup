@@ -192,10 +192,10 @@ public class TestHelper {
         new Actions(driver).moveToElement(driver.findElement(By.id(selector)));
     }
     public static void moveToXpathElement(String selector) {
-        new Actions(driver).moveToElement(driver.findElement(By.xpath(selector))).build().perform();
+        new Actions(driver).moveToElement(driver.findElement(By.xpath(selector)));
     }
     public static void moveToCssElement(String selector) {
-        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector))).build().perform();
+        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector)));
     }
 
     public static void moveToIdElementAndClickInCenter(String selector) {

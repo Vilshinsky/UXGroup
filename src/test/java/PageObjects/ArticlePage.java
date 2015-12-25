@@ -1,5 +1,6 @@
 package PageObjects;
 
+import Common.Environments;
 import Common.TestHelper;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class ArticlePage {
     public static String xpathTextAreaComment = "//textarea[contains(@class,'form-textarea')]";
     public static String xpathButtonPostComment = "//*[@class='wl-upload-media-submit']//input[@type='submit']";
-    public static String xpathComment = "//*[@class='users-comment']//a[contains(@class,'username')]";
+    public static String xpathComment = "//a[contains(text(),'" + Environments.emailValue + "')]";
     public static String xpathButtonLoveArticle = "//a[contains(@href,'/node/')]";
     public static String xpathLovesCounter = "//a[contains(@href,'/node/')]/following-sibling::p/span[contains(@content,'UserLikes')]";
     public static String xpathButtonUnLoveArticle = "//a[contains(@href,'/node/')][contains(@href,'/unlike')]";
@@ -31,7 +32,12 @@ public class ArticlePage {
     }
     @Step("Verify that comment appears on the page.")
     public static void verifyThatCommentIsAdded() {
-        TestHelper.waitXpathElement(xpathComment);
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath(xpathComment)).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
         Assert.assertEquals(true,TestHelper.waitXpathElement(xpathComment).isDisplayed());
     }
 
