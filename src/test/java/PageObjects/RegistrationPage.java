@@ -106,7 +106,7 @@ public class RegistrationPage {
     }
     @Step("Submit registration by click on Register button.")
     public static void submitRegistration() {
-        TestHelper.moveToXpathElement(xpathButtonSubmitRegistration);
+        TestHelper.waitSec(5);
         TestHelper.waitXpathElement(xpathButtonSubmitRegistration).click();
     }
     @Step("Verify that creation of new account is complete.")
