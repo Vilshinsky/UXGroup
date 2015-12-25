@@ -361,20 +361,6 @@ public class TestsSmoke {
     }
 
     @Features("Reviews")
-    @Stories("User should be able to left review")
-    @Severity(SeverityLevel.BLOCKER)
-    @Test
-    public void shouldBeAbleToLeftReview() {
-        Environments.goTo(Environments.BASE_URL + Environments.REVIEW);
-        Environments.logIn();
-        ReviewPage.setRate();
-        ReviewPage.clickOnNextButton();
-        ReviewPage.fillInTextarea();
-        ReviewPage.clickOnSubmitMyReviewButton();
-        ReviewPage.verifyThatReviewIsAdded();
-    }
-
-    @Features("Reviews")
     @Stories("User should see error message when tries to continue reviewing without setting of rate")
     @Severity(SeverityLevel.NORMAL)
     @Test
