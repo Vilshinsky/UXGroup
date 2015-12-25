@@ -83,6 +83,12 @@ public class RegistrationPage {
     public static void setBirthYear() {
         TestHelper.waitXpathElement(xpathButtonDropdownYear).click();
         TestHelper.waitXpathElement(xpath1993Year).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath("//span[contains(text(),'1993')]")).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Set gender.")
     public static void setGender() {
@@ -91,6 +97,12 @@ public class RegistrationPage {
     @Step("Click on Terms & Conditions checkbox.")
     public static void agreeWithTCCheckbox() {
         TestHelper.driver.findElement(By.xpath(xpathTCCheckbox)).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Submit registration by click on Register button.")
     public static void submitRegistration() {
