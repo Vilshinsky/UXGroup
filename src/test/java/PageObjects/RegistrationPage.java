@@ -49,35 +49,76 @@ public class RegistrationPage {
 
     @Step("Fill First Name input with valid value.")
     public static void fillFirstNameInput() {
-        TestHelper.waitXpathElement(xpathInputFirstName).sendKeys(Environments.emailValue);
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathInputFirstName).isEnabled()) {
+                TestHelper.waitXpathElement(xpathInputFirstName).sendKeys(Environments.emailValue);
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Fill Last Name input with valid value.")
     public static void fillLastNameInput() {
-        TestHelper.waitXpathElement(xpathInputLastName).sendKeys("Smith");
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathInputLastName).isEnabled()) {
+                TestHelper.waitXpathElement(xpathInputLastName).sendKeys("Smith");
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
-    @Step("Fill Last Name input with valid value.")
+    @Step("Fill Email input with valid value.")
     public static void fillEmailInput() {
-        TestHelper.waitXpathElement(xpathInputEmail).sendKeys(Environments.emailValue + "@mailforspam.com");
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathInputEmail).isEnabled()) {
+                TestHelper.waitXpathElement(xpathInputEmail).sendKeys(Environments.emailValue + "@mailforspam.com");
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Fill Password input with valid value.")
     public static void fillPasswordInput() {
-        TestHelper.waitXpathElement(xpathInputPassword).sendKeys(Environments.validPassword);
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathInputPassword).isEnabled()) {
+                TestHelper.waitXpathElement(xpathInputPassword).sendKeys(Environments.validPassword);
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Fill Verify Password input with valid value.")
     public static void fillConfirmedPasswordInput() {
-        TestHelper.waitXpathElement(xpathInputConfirmedPassword).sendKeys(Environments.validPassword);
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.waitXpathElement(xpathInputConfirmedPassword).isEnabled()) {
+                TestHelper.waitXpathElement(xpathInputConfirmedPassword).sendKeys(Environments.validPassword);
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Set month of birth.")
     public static void setBirthMonth() {
         TestHelper.scrollPage(400);
         TestHelper.waitXpathElement(xpathButtonDropdownMonth).click();
-        TestHelper.waitMsec(500);
         TestHelper.waitXpathElement(xpathJanuaryMonth).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath("//span[contains(text(),'Jan')]")).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Set day of birth.")
     public static void setBirthDay() {
         TestHelper.waitXpathElement(xpathButtonDropdownDay).click();
         TestHelper.waitXpathElement(xpath1Day).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath("//span[contains(text(),'1')]")).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Set year of birth.")
     public static void setBirthYear() {
@@ -93,6 +134,12 @@ public class RegistrationPage {
     @Step("Set gender.")
     public static void setGender() {
         TestHelper.driver.findElement(By.xpath(xpathRadiobuttonGender)).click();
+        for(int i = 0; i < 450; i++) {
+            if(TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
+                break;
+            }
+            TestHelper.waitMsec(100);
+        }
     }
     @Step("Click on Terms & Conditions checkbox.")
     public static void agreeWithTCCheckbox() {
@@ -106,7 +153,6 @@ public class RegistrationPage {
     }
     @Step("Submit registration by click on Register button.")
     public static void submitRegistration() {
-        TestHelper.waitSec(5);
         TestHelper.waitXpathElement(xpathButtonSubmitRegistration).click();
     }
     @Step("Verify that creation of new account is complete.")
