@@ -133,7 +133,7 @@ public class RegistrationPage {
     }
     @Step("Set gender.")
     public static void setGender() {
-        TestHelper.driver.findElement(By.xpath(xpathRadiobuttonGender)).click();
+        TestHelper.waitXpathElement(xpathRadiobuttonGender).click();
         for(int i = 0; i < 450; i++) {
             if(TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
                 break;
@@ -143,7 +143,7 @@ public class RegistrationPage {
     }
     @Step("Click on Terms & Conditions checkbox.")
     public static void agreeWithTCCheckbox() {
-        TestHelper.driver.findElement(By.xpath(xpathTCCheckbox)).click();
+        TestHelper.waitXpathElement(xpathTCCheckbox).click();
         for(int i = 0; i < 450; i++) {
             if(TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
                 break;
