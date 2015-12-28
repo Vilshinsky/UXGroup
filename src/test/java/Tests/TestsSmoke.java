@@ -18,10 +18,12 @@ public class TestsSmoke {
         Environments.passRegistration();
         TestHelper.quit();
     }
+
     @Before
     public void setUp() {
         TestHelper.runDriverFullscreen("firefox");
     }
+
     @After
     public void tearDown() {
         TestHelper.quit();
@@ -166,6 +168,7 @@ public class TestsSmoke {
         RegistrationPage.verifyFirstNameErrorMessage();
 
     }
+
     @Features("Authorization")
     @Stories("User should see error message in registration form when tries to pass registration with empty Last Name input")
     @Severity(SeverityLevel.NORMAL)

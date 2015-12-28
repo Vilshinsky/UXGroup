@@ -26,33 +26,38 @@ public class ArticlePage {
     public static void fillTextAreaByComment() {
         TestHelper.waitXpathElement(xpathTextAreaComment).sendKeys("Selenium autotest comment.");
     }
+
     @Step("Click on Post My comment button.")
     public static void clickOnPostMyCommentButton() {
         TestHelper.waitXpathElement(xpathButtonPostComment).click();
     }
+
     @Step("Verify that comment appears on the page.")
     public static void verifyThatCommentIsAdded() {
-        for(int i = 0; i < 450; i++) {
-            if(TestHelper.driver.findElements(By.xpath(xpathComment)).size() > 0) {
+        for (int i = 0; i < 450; i++) {
+            if (TestHelper.driver.findElements(By.xpath(xpathComment)).size() > 0) {
                 break;
             }
             TestHelper.waitMsec(100);
         }
-        Assert.assertEquals(true,TestHelper.waitXpathElement(xpathComment).isDisplayed());
+        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathComment).isDisplayed());
     }
 
     public static int initialLoveCounter = 0;
     public static int finalLoveCounter = 0;
+
     public static int getLoveState() {
         int intCounter = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounter).getText());
         return intCounter;
     }
+
     @Step("Add Love in article.")
     public static void loveArticle() {
         initialLoveCounter = getLoveState();
         TestHelper.waitXpathElement(xpathButtonLoveArticle).click();
         TestHelper.waitSec(1);
     }
+
     @Step("Remove love in article.")
     public static void unLoveArticle() {
         initialLoveCounter = getLoveState();
@@ -64,7 +69,7 @@ public class ArticlePage {
     public static void verifyThatLovesCounterIsIncreased() {
         finalLoveCounter = getLoveState();
         System.out.println("Should increase in article. Loves before: " + initialLoveCounter + " Loves after: " + finalLoveCounter);
-        Assert.assertEquals(initialLoveCounter + 1,finalLoveCounter);
+        Assert.assertEquals(initialLoveCounter + 1, finalLoveCounter);
     }
 
     @Step("Verify that loves counter in article is decreased by 1")
@@ -72,13 +77,13 @@ public class ArticlePage {
         getLoveState();
         finalLoveCounter = getLoveState();
         System.out.println("Should decrease in article. Loves before: " + initialLoveCounter + " Loves after: " + finalLoveCounter);
-        Assert.assertEquals(initialLoveCounter - 1,finalLoveCounter);
+        Assert.assertEquals(initialLoveCounter - 1, finalLoveCounter);
     }
 
     @Step("Verify that current page is article")
     public static void verifyThatCurrentPageIsArticle() {
         TestHelper.waitXpathElement(HomePage.xpathButtonMyProfile);
-        Assert.assertEquals("Selenium Article",TestHelper.driver.findElement(By.xpath(xpathTitlesArticle)).getText());
+        Assert.assertEquals("Selenium Article", TestHelper.driver.findElement(By.xpath(xpathTitlesArticle)).getText());
     }
 
     @Step("Add Love in article as unauthorized user.")
@@ -86,22 +91,23 @@ public class ArticlePage {
         TestHelper.waitXpathElement(xpathLoveUnauthorized).click();
         TestHelper.waitSec(1);
     }
+
     @Step("Verify that redirection to the authorization form is happened.")
     public static void verifyRedirectionToLogInAfterTryToAddLove() {
         TestHelper.waitXpathElement(AuthorizationPage.xpathInputLogin);
-        Assert.assertEquals(true,TestHelper.driver.findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
+        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
     }
 
     @Step("Verify that comment block doesn't available to unauthorized user.")
     public static void verifyInabilityToLeaveCommentsByUnauthorizedUser() {
         TestHelper.waitXpathElement(xpathCommentsBlockUnauthorized);
-        Assert.assertEquals(true,TestHelper.waitXpathElementNotExist(xpathTextAreaComment));
+        Assert.assertEquals(true, TestHelper.waitXpathElementNotExist(xpathTextAreaComment));
     }
 
     @Step("Verify that instead the comment block unauthorized user sees Sign In and Register buttons.")
     public static void verifyAvailabilityOfSignInAndRegisterButtonsInsteadCommentsBlock() {
         TestHelper.waitXpathElement(xpathCommentsBlockUnauthorized);
-        Assert.assertEquals(true,TestHelper.driver.findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
-        Assert.assertEquals(true,TestHelper.driver.findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
+        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
+        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
     }
 }

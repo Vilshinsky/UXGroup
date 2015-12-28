@@ -29,6 +29,7 @@ public class Environments {
         TestHelper.waitXpathElement("//*[text()='Your Inbox:']");
         emailValue = mail;
     }
+
     @Step("Confirmation of registration in mail.")
     public static void confirmRegistrationInMail() {
         TestHelper.get("http://www.mfsa.info/mail/" + emailValue);
@@ -43,6 +44,7 @@ public class Environments {
         TestHelper.waitXpathElement("//a[contains(@href,'.com/user/confirmaccount')]").click();
         TestHelper.waitXpathElement("//*[@class='row registration-successful-dialog']");
     }
+
     public static void passRegistration() {
         goTo(BASE_URL);
         HomePage.clickOnRegisterButton();
@@ -61,6 +63,7 @@ public class Environments {
         Environments.confirmRegistrationInMail();
         RegistrationPage.verifyCompletionOfRegistration();
     }
+
     @Step("Pass authorization with valid credentials.")
     public static void logIn() {
         HomePage.clickOnLogInButton();

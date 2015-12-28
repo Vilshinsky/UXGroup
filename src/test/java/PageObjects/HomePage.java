@@ -21,8 +21,8 @@ public class HomePage {
 
     @Step("Click on Register button.")
     public static void clickOnRegisterButton() {
-        for(int i = 0; i < 450; i++) {
-            if(TestHelper.waitXpathElement(xpathButtonRegistration).isEnabled() &&
+        for (int i = 0; i < 450; i++) {
+            if (TestHelper.waitXpathElement(xpathButtonRegistration).isEnabled() &&
                     TestHelper.waitXpathElement(xpathButtonRegistration).isDisplayed()) {
                 TestHelper.waitXpathElement(xpathButtonRegistration).click();
                 break;
@@ -33,8 +33,8 @@ public class HomePage {
 
     @Step("Click on Log In button.")
     public static void clickOnLogInButton() {
-        for(int i = 0; i < 450; i++) {
-            if(TestHelper.waitXpathElement(xpathButtonLogin).isEnabled() &&
+        for (int i = 0; i < 450; i++) {
+            if (TestHelper.waitXpathElement(xpathButtonLogin).isEnabled() &&
                     TestHelper.waitXpathElement(xpathButtonLogin).isDisplayed()) {
                 TestHelper.waitXpathElement(xpathButtonLogin).click();
                 break;
@@ -50,27 +50,29 @@ public class HomePage {
 
     @Step("Verify that footer have 8 social buttons.")
     public static void verifyThatFooterHaveEightSocialButtons() {
-        Assert.assertEquals(8,TestHelper.driver.findElements(By.xpath(xpathLinksSocialOnFooter)).size());
+        Assert.assertEquals(8, TestHelper.driver.findElements(By.xpath(xpathLinksSocialOnFooter)).size());
     }
 
     @Step("Verify that hamburger menu button is exist.")
     public static void verifyThatHamburgerButtonIsExist() {
-        Assert.assertEquals(true,TestHelper.waitXpathElement(xpathButtonHamburger).isEnabled());
+        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathButtonHamburger).isEnabled());
     }
 
     @Step("Click on hamburger menu button.")
     public static void clickOnHamburgerMenuButton() {
         TestHelper.waitXpathElement(xpathButtonOpenHamburger).click();
     }
+
     @Step("Verify that hamburger menu is displayed.")
     public static void verifyThatHamburgerMenuIsDisplayed() {
-        Assert.assertEquals(true,TestHelper.waitXpathElement(xpathButtonCloseHamburger).isDisplayed());
+        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathButtonCloseHamburger).isDisplayed());
     }
 
     @Step("Click on Close hamburger menu button.")
     public static void clickOnCloseHamburgerMenuButton() {
         TestHelper.waitXpathElement(xpathButtonCloseHamburger).click();
     }
+
     @Step("Verify that hamburger menu is closed.")
     public static void verifyThatHamburgerMenuIsNotDisplay() {
         Assert.assertEquals(true, TestHelper.waitXpathElementNotExist(xpathButtonCloseHamburger));

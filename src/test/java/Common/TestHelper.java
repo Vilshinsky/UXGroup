@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -27,9 +28,9 @@ public class TestHelper {
 //Setup and quit of web driver
 
     public static void runDriver(String browser) {
-        if(browser.equals("chrome")) {
+        if (browser.equals("chrome")) {
             if (StringUtils.isEmpty(System.getProperty("webdriver.chrome.driver")))
-              System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
             driver = new ChromeDriver();
         } else if (browser.equals("firefox")) {
             driver = new FirefoxDriver();
@@ -38,15 +39,18 @@ public class TestHelper {
             driver = new InternetExplorerDriver();
         }
     }
+
     public static void runDriverAndGo(String browser, int width, int height, String link) {
         runDriver(browser);
         setResolution(width, height);
         get(link);
     }
+
     public static void runDriverFullscreen(String browser) {
         runDriver(browser);
         setFullscreen();
     }
+
     public static void runDriverFullscreenAndGo(String browser, String link) {
         runDriver(browser);
         setFullscreen();
@@ -54,7 +58,7 @@ public class TestHelper {
     }
 
     public static void droneDriver(String browser) {
-        if(browser.equals("chrome")) {
+        if (browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome");
             driver = new ChromeDriver();
         } else if (browser.equals("firefox")) {
@@ -62,25 +66,30 @@ public class TestHelper {
             driver = new FirefoxDriver();
         }
     }
+
     public static void setResolution(int width, int height) {
         driver.manage().window().setSize(new Dimension(width, height));
     }
+
     public static void setFullscreen() {
         driver.manage().window().maximize();
     }
+
     public static void get(String url) {
         driver.get(url);
     }
+
     public static void quit() {
         driver.quit();
     }
 
 
-//Basic actions on page
+    //Basic actions on page
     public static void scrollPage(int coord) {
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0," + coord + ")");
     }
+
     public static void waitSec(long seconds) {
         try {
             Thread.sleep(seconds * 1000);
@@ -88,6 +97,7 @@ public class TestHelper {
             e.printStackTrace();
         }
     }
+
     public static void waitMsec(long msec) {
         try {
             Thread.sleep(1);
@@ -95,6 +105,7 @@ public class TestHelper {
             e.printStackTrace();
         }
     }
+
     public static WebElement waitIdElement(String selector) {
         for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.id(selector)).size() > 0) {
@@ -111,6 +122,7 @@ public class TestHelper {
         }
         return driver.findElement(By.id(selector));
     }
+
     public static WebElement waitXpathElement(String selector) {
         for (int i = 0; i < 450; i++) {
             if (driver.findElements(By.xpath(selector)).size() > 0) {
@@ -120,6 +132,7 @@ public class TestHelper {
         }
         return driver.findElement(By.xpath(selector));
     }
+
     public static WebElement longWaitXpathElement(String selector) {
         for (int i = 0; i < 3000; i++) {
             if (driver.findElements(By.xpath(selector)).size() > 0) {
@@ -129,6 +142,7 @@ public class TestHelper {
         }
         return driver.findElement(By.xpath(selector));
     }
+
     public static WebElement waitCssElement(String selector) {
         for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.cssSelector(selector)).size() > 0) {
@@ -145,6 +159,7 @@ public class TestHelper {
         }
         return driver.findElement(By.cssSelector(selector));
     }
+
     public static WebElement waitIdElementNotExist(String selector) {
         for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.id(selector)).size() == 0) {
@@ -157,7 +172,7 @@ public class TestHelper {
 
     public static WebElement scrollXpathElement(String selector) {
         for (int i = 0; i < 300; i++) {
-            if(driver.findElements(By.xpath(selector)).size() > 0) {
+            if (driver.findElements(By.xpath(selector)).size() > 0) {
                 for (int c = 0; c < 300; c++) {
                     if (driver.findElement(By.xpath(selector)).isDisplayed()) {
                         break;
@@ -179,6 +194,7 @@ public class TestHelper {
         }
         return true;
     }
+
     public static WebElement waitCssElementNotExist(String selector) {
         for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.cssSelector(selector)).size() == 0) {
@@ -188,30 +204,35 @@ public class TestHelper {
         }
         return null;
     }
+
     public static void moveToIdElement(String selector) {
         new Actions(driver).moveToElement(driver.findElement(By.id(selector)));
     }
+
     public static void moveToXpathElement(String selector) {
         new Actions(driver).moveToElement(driver.findElement(By.xpath(selector)));
     }
+
     public static void moveToCssElement(String selector) {
         new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector)));
     }
 
     public static void moveToIdElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width"))/2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height"))/2;
-        new Actions(driver).moveToElement(driver.findElement(By.id(selector)),width,height).click().build().perform();
+        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        new Actions(driver).moveToElement(driver.findElement(By.id(selector)), width, height).click().build().perform();
     }
+
     public static void moveToXpathElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width"))/2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height"))/2;
-        new Actions(driver).moveToElement(driver.findElement(By.xpath(selector)),width,height).click().build().perform();
+        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        new Actions(driver).moveToElement(driver.findElement(By.xpath(selector)), width, height).click().build().perform();
     }
+
     public static void moveToCssElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width"))/2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height"))/2;
-        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector)),width,height).click().build().perform();
+        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector)), width, height).click().build().perform();
     }
 
     public static int stringToInteger(String selector) {
@@ -219,7 +240,7 @@ public class TestHelper {
         return newInt;
     }
 
-//Alert handler and windows switcher
+    //Alert handler and windows switcher
     public static boolean checkIsAlertPresent() {
         try {
             driver.switchTo().alert();
@@ -228,6 +249,7 @@ public class TestHelper {
             return false;
         }
     }
+
     public static void handleAlert() {
         if (checkIsAlertPresent()) {
             waitMsec(800);
@@ -235,6 +257,7 @@ public class TestHelper {
             alert.accept();
         }
     }
+
     public void getNewWindow(String xpath) {
         String originalWindow = driver.getWindowHandle();
         final Set<String> oldWindowsSet = driver.getWindowHandles();
@@ -256,7 +279,7 @@ public class TestHelper {
         System.out.println("Old window title: " + driver.getTitle());
     }
 
-//Output files generation
+    //Output files generation
     public static void takeScreenshot(String commonname) {
         try {
             File scrFile =
@@ -268,7 +291,8 @@ public class TestHelper {
             e.printStackTrace();
         }
     }
-//Date format examples: "yyyyMMdd", "MM.dd.yyyy", "yyyyMMddHHmmss"
+
+    //Date format examples: "yyyyMMdd", "MM.dd.yyyy", "yyyyMMddHHmmss"
     public static String generateActualDateString(String dateformat) {
         DateFormat dateFormat = new SimpleDateFormat(dateformat);
         Date date = new Date();
@@ -277,12 +301,12 @@ public class TestHelper {
     }
 
 
-
     //Attaching files
     public static void setClipboardData(String path) {
         StringSelection stringSelection = new StringSelection(path);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
+
     public void attachFile(String path) {
         setClipboardData(path);
         try {
@@ -298,13 +322,14 @@ public class TestHelper {
         }
     }
 
-//Actions with dropdown
+    //Actions with dropdown
     public static void selectIndexInDropdownXpath(String selector, int number) {
         waitXpathElement(selector);
         WebElement select = TestHelper.waitXpathElement(selector);
         Select sel = new Select(select);
         sel.selectByIndex(number);
     }
+
     public static void selectVisibleTextInDropdownXpath(String selector, String text) {
         waitXpathElement(selector);
         WebElement select = TestHelper.waitXpathElement(selector);

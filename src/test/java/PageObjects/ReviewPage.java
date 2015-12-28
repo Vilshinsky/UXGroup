@@ -27,6 +27,7 @@ public class ReviewPage {
     public static void setRate() {
         TestHelper.waitXpathElement(xpathFirstStar).click();
     }
+
     @Step
     public static void clickOnNextButton() {
         TestHelper.waitXpathElement(xpathButtonNextOrGoBack).isDisplayed();
@@ -34,14 +35,17 @@ public class ReviewPage {
         TestHelper.waitSec(1);
         TestHelper.waitXpathElement(xpathButtonNextOrGoBack).click();
     }
+
     @Step
     public static void fillInTextarea() {
         TestHelper.waitXpathElement(xpathTextareaReview).sendKeys("Selenium review body text.");
     }
+
     @Step
     public static void clickOnSubmitMyReviewButton() {
         TestHelper.waitXpathElement(xpathButtonSubmitReview).click();
     }
+
     @Step
     public static void verifyThatReviewIsAdded() {
         Assert.assertEquals("Selenium review body text.", TestHelper.waitXpathElement(xpathTextReview).getText());
@@ -59,32 +63,35 @@ public class ReviewPage {
 
     public static int initialLoveCounterReview = 0;
     public static int finalLoveCounterReview = 0;
+
     public static int getReviewLoveState() {
         int intCounter = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
         return intCounter;
     }
+
     @Step("Add Love in review.")
     public static void loveReview() {
         TestHelper.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
         TestHelper.waitXpathElement(xpathButtonLoveReview).click();
         int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
-        for(int i = 0; i < 450; i++) {
-            if(getInt > initialLoveCounterReview) {
+        for (int i = 0; i < 450; i++) {
+            if (getInt > initialLoveCounterReview) {
                 break;
             }
             TestHelper.waitMsec(100);
             getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
         }
     }
+
     @Step("Remove love in review.")
     public static void unLoveReview() {
         TestHelper.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
         TestHelper.waitXpathElement(xpathButtonUnLoveReview).click();
         int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
-        for(int i = 0; i < 450; i++) {
-            if(getInt < initialLoveCounterReview) {
+        for (int i = 0; i < 450; i++) {
+            if (getInt < initialLoveCounterReview) {
                 break;
             }
             TestHelper.waitMsec(100);
@@ -97,7 +104,7 @@ public class ReviewPage {
         finalLoveCounterReview = getReviewLoveState();
         System.out.println("Should increase in review. Loves before: " +
                 initialLoveCounterReview + " Loves after: " + finalLoveCounterReview);
-        Assert.assertEquals(initialLoveCounterReview + 1,finalLoveCounterReview);
+        Assert.assertEquals(initialLoveCounterReview + 1, finalLoveCounterReview);
     }
 
     @Step("Verify that loves counter in article is decreased by 1")
@@ -106,6 +113,6 @@ public class ReviewPage {
         finalLoveCounterReview = getReviewLoveState();
         System.out.println("Should decrease in review. Loves before: " + initialLoveCounterReview +
                 " Loves after: " + finalLoveCounterReview);
-        Assert.assertEquals(initialLoveCounterReview - 1,finalLoveCounterReview);
+        Assert.assertEquals(initialLoveCounterReview - 1, finalLoveCounterReview);
     }
 }

@@ -19,10 +19,12 @@ public class Temp {
         Environments.passRegistration();
         TestHelper.quit();
     }
+
     @Before
     public void setUp() {
         TestHelper.runDriverFullscreen("firefox");
     }
+
     @After
     public void tearDown() {
         TestHelper.quit();

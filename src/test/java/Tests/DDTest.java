@@ -22,10 +22,10 @@ public class DDTest {
     //Define a method that will return the collection of parameters to the 'DDTest' class by using the @Parameters annotation.
     @Parameterized.Parameters
     public static Collection testData() {
-        return Arrays.asList(new Object[][] {
-                {"blablabla","blablabla","e706b652"},
-                {"asdasdasd","asdasdasd","18559b67"},
-                {"wwwwwwwww","wwwwwwwww","bf10287e"}
+        return Arrays.asList(new Object[][]{
+                {"blablabla", "blablabla", "e706b652"},
+                {"asdasdasd", "asdasdasd", "18559b67"},
+                {"wwwwwwwww", "wwwwwwwww", "bf10287e"}
         });
     }
 
@@ -57,7 +57,7 @@ public class DDTest {
         } catch (Error e) {
 //Capture and append Exceptions/Errors
             verificationErrors.append(e.toString());
-            System.err.println("Assertion Fail "+ verificationErrors.toString());
+            System.err.println("Assertion Fail " + verificationErrors.toString());
         }
         TestHelper.quit();
     }
