@@ -29,8 +29,7 @@ public class TestHelper {
 
     public static void runDriver(String browser) {
         if (browser.equals("chrome")) {
-            if (StringUtils.isEmpty(System.getProperty("webdriver.chrome.driver")))
-                System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
             driver = new ChromeDriver();
         } else if (browser.equals("firefox")) {
             driver = new FirefoxDriver();
