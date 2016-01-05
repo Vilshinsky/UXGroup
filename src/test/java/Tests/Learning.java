@@ -3,6 +3,7 @@ package Tests;
 import Common.Teh;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 
 public class Learning {
     @Test

@@ -1,5 +1,6 @@
 package Common;
 
+import com.google.common.base.Predicate;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
@@ -17,8 +18,9 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Teh {
     public static WebDriver driver;
@@ -103,6 +105,22 @@ public class Teh {
         }
     }
 
+    public static void waitJqueryInactive() {
+        WebDriverWait waiter = new WebDriverWait(driver, 30);
+        waiter.until(new Predicate<WebDriver>() {
+            public boolean apply(WebDriver input) {
+                return (Boolean) ((JavascriptExecutor)driver).executeScript("return jQuery.active == 0");
+            }
+        });
+    }
+
+    public static boolean isElementPresent(By locator) {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        List<WebElement> elements = driver.findElements(locator);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        return elements.size() > 0 && elements.get(0).isDisplayed();
+    }
+
     public static WebElement waitIdElement(String selector) {
         for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.id(selector)).size() > 0) {
@@ -121,7 +139,7 @@ public class Teh {
     }
 
     public static WebElement waitXpathElement(String selector) {
-        for (int i = 0; i < 450; i++) {
+        for (int i = 0; i < 300; i++) {
             if (driver.findElements(By.xpath(selector)).size() > 0) {
                 break;
             }
