@@ -1,6 +1,6 @@
 package PageObjects;
 
-import Common.TestHelper;
+import Common.Teh;
 import org.junit.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -25,77 +25,77 @@ public class ReviewPage {
 
     @Step
     public static void setRate() {
-        TestHelper.waitXpathElement(xpathFirstStar).click();
+        Teh.waitXpathElement(xpathFirstStar).click();
     }
 
     @Step
     public static void clickOnNextButton() {
-        TestHelper.waitXpathElement(xpathButtonNextOrGoBack).isDisplayed();
-        TestHelper.waitXpathElement(xpathButtonNextOrGoBack).isEnabled();
-        TestHelper.waitSec(1);
-        TestHelper.waitXpathElement(xpathButtonNextOrGoBack).click();
+        Teh.waitXpathElement(xpathButtonNextOrGoBack).isDisplayed();
+        Teh.waitXpathElement(xpathButtonNextOrGoBack).isEnabled();
+        Teh.waitSec(1);
+        Teh.waitXpathElement(xpathButtonNextOrGoBack).click();
     }
 
     @Step
     public static void fillInTextarea() {
-        TestHelper.waitXpathElement(xpathTextareaReview).sendKeys("Selenium review body text.");
+        Teh.waitXpathElement(xpathTextareaReview).sendKeys("Selenium review body text.");
     }
 
     @Step
     public static void clickOnSubmitMyReviewButton() {
-        TestHelper.waitXpathElement(xpathButtonSubmitReview).click();
+        Teh.waitXpathElement(xpathButtonSubmitReview).click();
     }
 
     @Step
     public static void verifyThatReviewIsAdded() {
-        Assert.assertEquals("Selenium review body text.", TestHelper.waitXpathElement(xpathTextReview).getText());
+        Assert.assertEquals("Selenium review body text.", Teh.waitXpathElement(xpathTextReview).getText());
     }
 
     @Step
     public static void verifyThatNoRateErrorMessageIsDisplayed() {
-        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathNoRateErrorMessage).isDisplayed());
+        Assert.assertEquals(true, Teh.waitXpathElement(xpathNoRateErrorMessage).isDisplayed());
     }
 
     @Step
     public static void verifyThatNoTextErrorMessageIsDisplayed() {
-        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathNoTextErrorMessage).isDisplayed());
+        Assert.assertEquals(true, Teh.waitXpathElement(xpathNoTextErrorMessage).isDisplayed());
     }
 
     public static int initialLoveCounterReview = 0;
     public static int finalLoveCounterReview = 0;
 
     public static int getReviewLoveState() {
-        int intCounter = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        int intCounter = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounterReview).getText());
         return intCounter;
     }
 
     @Step("Add Love in review.")
     public static void loveReview() {
-        TestHelper.scrollPage(500);
+        Teh.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
-        TestHelper.waitXpathElement(xpathButtonLoveReview).click();
-        int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        Teh.waitXpathElement(xpathButtonLoveReview).click();
+        int getInt = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounterReview).getText());
         for (int i = 0; i < 450; i++) {
             if (getInt > initialLoveCounterReview) {
                 break;
             }
-            TestHelper.waitMsec(100);
-            getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+            Teh.waitMsec(100);
+            getInt = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounterReview).getText());
         }
     }
 
     @Step("Remove love in review.")
     public static void unLoveReview() {
-        TestHelper.scrollPage(500);
+        Teh.scrollPage(500);
         initialLoveCounterReview = getReviewLoveState();
-        TestHelper.waitXpathElement(xpathButtonUnLoveReview).click();
-        int getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+        Teh.waitXpathElement(xpathButtonUnLoveReview).click();
+        int getInt = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounterReview).getText());
         for (int i = 0; i < 450; i++) {
             if (getInt < initialLoveCounterReview) {
                 break;
             }
-            TestHelper.waitMsec(100);
-            getInt = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounterReview).getText());
+            Teh.waitMsec(100);
+            getInt = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounterReview).getText());
         }
     }
 

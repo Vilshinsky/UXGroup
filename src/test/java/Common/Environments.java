@@ -20,29 +20,29 @@ public class Environments {
     public static String TEST_VOCALPOINT_BASE_URL_ARTICLES = "http://test2.vocalpoint.com/articles";
 
     public static void createMailBox() {
-        String mail = TestHelper.generateStringValue();
-        TestHelper.get("http://www.mailforspam.com/");
-        TestHelper.waitXpathElement("//*[@name='spammail']").sendKeys(mail);
+        String mail = Teh.generateStringValue();
+        Teh.get("http://www.mailforspam.com/");
+        Teh.waitXpathElement("//*[@name='spammail']").sendKeys(mail);
         System.out.println("Email used for confirmation of registration is " + mail +
                 "@mailforspam.com, check on " + "http://www.mfsa.info/mail/" + mail);
-        TestHelper.waitXpathElement("//*[@value='Check']").click();
-        TestHelper.waitXpathElement("//*[text()='Your Inbox:']");
+        Teh.waitXpathElement("//*[@value='Check']").click();
+        Teh.waitXpathElement("//*[text()='Your Inbox:']");
         emailValue = mail;
     }
 
     @Step("Confirmation of registration in mail.")
     public static void confirmRegistrationInMail() {
-        TestHelper.get("http://www.mfsa.info/mail/" + emailValue);
+        Teh.get("http://www.mfsa.info/mail/" + emailValue);
         for (int i = 0; i < 60; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//td[contains(text(),'White Label')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//td[contains(text(),'White Label')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitXpathElement("//*[@value='Check']").click();
-            TestHelper.waitMsec(3000);
+            Teh.waitXpathElement("//*[@value='Check']").click();
+            Teh.waitMsec(3000);
         }
-        TestHelper.waitXpathElement("//*[contains(text(),'White')]").click();
-        TestHelper.waitXpathElement("//a[contains(@href,'.com/user/confirmaccount')]").click();
-        TestHelper.waitXpathElement("//*[@class='row registration-successful-dialog']");
+        Teh.waitXpathElement("//*[contains(text(),'White')]").click();
+        Teh.waitXpathElement("//a[contains(@href,'.com/user/confirmaccount')]").click();
+        Teh.waitXpathElement("//*[@class='row registration-successful-dialog']");
     }
 
     public static void passRegistration() {
@@ -74,6 +74,6 @@ public class Environments {
 
     @Step("Go to the testable environment.")
     public static void goTo(String url) {
-        TestHelper.get(url);
+        Teh.get(url);
     }
 }

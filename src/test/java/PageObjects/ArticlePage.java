@@ -1,7 +1,7 @@
 package PageObjects;
 
 import Common.Environments;
-import Common.TestHelper;
+import Common.Teh;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -24,45 +24,45 @@ public class ArticlePage {
 
     @Step("Go to the text area for user's comment and fill it by some text.")
     public static void fillTextAreaByComment() {
-        TestHelper.waitXpathElement(xpathTextAreaComment).sendKeys("Selenium autotest comment.");
+        Teh.waitXpathElement(xpathTextAreaComment).sendKeys("Selenium autotest comment.");
     }
 
     @Step("Click on Post My comment button.")
     public static void clickOnPostMyCommentButton() {
-        TestHelper.waitXpathElement(xpathButtonPostComment).click();
+        Teh.waitXpathElement(xpathButtonPostComment).click();
     }
 
     @Step("Verify that comment appears on the page.")
     public static void verifyThatCommentIsAdded() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath(xpathComment)).size() > 0) {
+            if (Teh.driver.findElements(By.xpath(xpathComment)).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
-        Assert.assertEquals(true, TestHelper.waitXpathElement(xpathComment).isDisplayed());
+        Assert.assertEquals(true, Teh.waitXpathElement(xpathComment).isDisplayed());
     }
 
     public static int initialLoveCounter = 0;
     public static int finalLoveCounter = 0;
 
     public static int getLoveState() {
-        int intCounter = Integer.parseInt(TestHelper.waitXpathElement(xpathLovesCounter).getText());
+        int intCounter = Integer.parseInt(Teh.waitXpathElement(xpathLovesCounter).getText());
         return intCounter;
     }
 
     @Step("Add Love in article.")
     public static void loveArticle() {
         initialLoveCounter = getLoveState();
-        TestHelper.waitXpathElement(xpathButtonLoveArticle).click();
-        TestHelper.waitSec(1);
+        Teh.waitXpathElement(xpathButtonLoveArticle).click();
+        Teh.waitSec(1);
     }
 
     @Step("Remove love in article.")
     public static void unLoveArticle() {
         initialLoveCounter = getLoveState();
-        TestHelper.waitXpathElement(xpathButtonUnLoveArticle).click();
-        TestHelper.waitSec(1);
+        Teh.waitXpathElement(xpathButtonUnLoveArticle).click();
+        Teh.waitSec(1);
     }
 
     @Step("Verify that loves counter in article is increased by 1")
@@ -82,32 +82,32 @@ public class ArticlePage {
 
     @Step("Verify that current page is article")
     public static void verifyThatCurrentPageIsArticle() {
-        TestHelper.waitXpathElement(HomePage.xpathButtonMyProfile);
-        Assert.assertEquals("Selenium Article", TestHelper.driver.findElement(By.xpath(xpathTitlesArticle)).getText());
+        Teh.waitXpathElement(HomePage.xpathButtonMyProfile);
+        Assert.assertEquals("Selenium Article", Teh.driver.findElement(By.xpath(xpathTitlesArticle)).getText());
     }
 
     @Step("Add Love in article as unauthorized user.")
     public static void loveArticleUnauthorized() {
-        TestHelper.waitXpathElement(xpathLoveUnauthorized).click();
-        TestHelper.waitSec(1);
+        Teh.waitXpathElement(xpathLoveUnauthorized).click();
+        Teh.waitSec(1);
     }
 
     @Step("Verify that redirection to the authorization form is happened.")
     public static void verifyRedirectionToLogInAfterTryToAddLove() {
-        TestHelper.waitXpathElement(AuthorizationPage.xpathInputLogin);
-        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
+        Teh.waitXpathElement(AuthorizationPage.xpathInputLogin);
+        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
     }
 
     @Step("Verify that comment block doesn't available to unauthorized user.")
     public static void verifyInabilityToLeaveCommentsByUnauthorizedUser() {
-        TestHelper.waitXpathElement(xpathCommentsBlockUnauthorized);
-        Assert.assertEquals(true, TestHelper.waitXpathElementNotExist(xpathTextAreaComment));
+        Teh.waitXpathElement(xpathCommentsBlockUnauthorized);
+        Assert.assertEquals(true, Teh.waitXpathElementNotExist(xpathTextAreaComment));
     }
 
     @Step("Verify that instead the comment block unauthorized user sees Sign In and Register buttons.")
     public static void verifyAvailabilityOfSignInAndRegisterButtonsInsteadCommentsBlock() {
-        TestHelper.waitXpathElement(xpathCommentsBlockUnauthorized);
-        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
-        Assert.assertEquals(true, TestHelper.driver.findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
+        Teh.waitXpathElement(xpathCommentsBlockUnauthorized);
+        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
+        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
     }
 }

@@ -1,6 +1,6 @@
 package Tests;
 
-import Common.TestHelper;
+import Common.Teh;
 import PageObjects.*;
 import Common.Environments;
 import org.junit.*;
@@ -13,20 +13,20 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 public class TestsSmoke {
     @BeforeClass
     public static void setPrecondition() {
-        TestHelper.runDriverFullscreen("firefox");
+        Teh.runDriverFullscreen("firefox");
         Environments.createMailBox();
         Environments.passRegistration();
-        TestHelper.quit();
+        Teh.quit();
     }
 
     @Before
     public void setUp() {
-        TestHelper.runDriverFullscreen("firefox");
+        Teh.runDriverFullscreen("firefox");
     }
 
     @After
     public void tearDown() {
-        TestHelper.quit();
+        Teh.quit();
     }
 
     @Features("Authorization")
@@ -317,7 +317,7 @@ public class TestsSmoke {
     @Test
     public void shouldSeeEightSocialButtonsOnFooter() {
         Environments.goTo(Environments.BASE_URL);
-        TestHelper.scrollPage(1500);
+        Teh.scrollPage(1500);
         HomePage.verifyThatFooterHaveEightSocialButtons();
     }
 

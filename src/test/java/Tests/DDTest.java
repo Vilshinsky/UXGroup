@@ -1,6 +1,6 @@
 package Tests;
 
-import Common.TestHelper;
+import Common.Teh;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,26 +39,26 @@ public class DDTest {
     //Finally, add the test case method 'testPasswordGenerator()' that uses parameterized variables. Also, add the setup() and teardown() methods to the 'DDTest' class.
     @Test
     public void testPasswordGenerator() throws Exception {
-        TestHelper.runDriverAndGo("firefox", 1280, 900, "http://angel.net/~nic/passwd.html");
+        Teh.runDriverAndGo("firefox", 1280, 900, "http://angel.net/~nic/passwd.html");
 //Get the 'inputPassword' element and set the value using parameterised 'password' variable
-        WebElement inputPassword = TestHelper.waitXpathElement("//*[@name='master']");
+        WebElement inputPassword = Teh.waitXpathElement("//*[@name='master']");
         inputPassword.clear();
         inputPassword.sendKeys(password);
 //Get the 'siteName' element and set the value using parameterised 'sitename' variable
-        WebElement siteName = TestHelper.waitXpathElement("//*[@name='site']");
+        WebElement siteName = Teh.waitXpathElement("//*[@name='site']");
         siteName.clear();
         siteName.sendKeys(sitename);
 //Click on 'Generate' button
-        TestHelper.waitXpathElement("//*[@type='submit']").click();
+        Teh.waitXpathElement("//*[@type='submit']").click();
         try {
 //Get the Generated Password input element and verify its value using parameterised 'generatedPassword' variable
-            WebElement inputGeneratedPassword = TestHelper.waitXpathElement("//*[@name='password']");
+            WebElement inputGeneratedPassword = Teh.waitXpathElement("//*[@name='password']");
             Assert.assertEquals(generatedPassword, inputGeneratedPassword.getAttribute("value"));
         } catch (Error e) {
 //Capture and append Exceptions/Errors
             verificationErrors.append(e.toString());
             System.err.println("Assertion Fail " + verificationErrors.toString());
         }
-        TestHelper.quit();
+        Teh.quit();
     }
 }

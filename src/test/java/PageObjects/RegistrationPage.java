@@ -1,7 +1,7 @@
 package PageObjects;
 
 import Common.Environments;
-import Common.TestHelper;
+import Common.Teh;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -50,218 +50,218 @@ public class RegistrationPage {
     @Step("Fill First Name input with valid value.")
     public static void fillFirstNameInput() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.waitXpathElement(xpathInputFirstName).isEnabled()) {
-                TestHelper.waitXpathElement(xpathInputFirstName).sendKeys(Environments.emailValue);
+            if (Teh.waitXpathElement(xpathInputFirstName).isEnabled()) {
+                Teh.waitXpathElement(xpathInputFirstName).sendKeys(Environments.emailValue);
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Fill Last Name input with valid value.")
     public static void fillLastNameInput() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.waitXpathElement(xpathInputLastName).isEnabled()) {
-                TestHelper.waitXpathElement(xpathInputLastName).sendKeys("Smith");
+            if (Teh.waitXpathElement(xpathInputLastName).isEnabled()) {
+                Teh.waitXpathElement(xpathInputLastName).sendKeys("Smith");
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Fill Email input with valid value.")
     public static void fillEmailInput() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.waitXpathElement(xpathInputEmail).isEnabled()) {
-                TestHelper.waitXpathElement(xpathInputEmail).sendKeys(Environments.emailValue + "@mailforspam.com");
+            if (Teh.waitXpathElement(xpathInputEmail).isEnabled()) {
+                Teh.waitXpathElement(xpathInputEmail).sendKeys(Environments.emailValue + "@mailforspam.com");
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Fill Password input with valid value.")
     public static void fillPasswordInput() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.waitXpathElement(xpathInputPassword).isEnabled()) {
-                TestHelper.waitXpathElement(xpathInputPassword).sendKeys(Environments.validPassword);
+            if (Teh.waitXpathElement(xpathInputPassword).isEnabled()) {
+                Teh.waitXpathElement(xpathInputPassword).sendKeys(Environments.validPassword);
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Fill Verify Password input with valid value.")
     public static void fillConfirmedPasswordInput() {
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.waitXpathElement(xpathInputConfirmedPassword).isEnabled()) {
-                TestHelper.waitXpathElement(xpathInputConfirmedPassword).sendKeys(Environments.validPassword);
+            if (Teh.waitXpathElement(xpathInputConfirmedPassword).isEnabled()) {
+                Teh.waitXpathElement(xpathInputConfirmedPassword).sendKeys(Environments.validPassword);
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Set month of birth.")
     public static void setBirthMonth() {
-        TestHelper.scrollPage(400);
-        TestHelper.waitXpathElement(xpathButtonDropdownMonth).click();
-        TestHelper.waitXpathElement(xpathJanuaryMonth).click();
+        Teh.scrollPage(400);
+        Teh.waitXpathElement(xpathButtonDropdownMonth).click();
+        Teh.waitXpathElement(xpathJanuaryMonth).click();
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//span[contains(text(),'Jan')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'Jan')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Set day of birth.")
     public static void setBirthDay() {
-        TestHelper.waitXpathElement(xpathButtonDropdownDay).click();
-        TestHelper.waitXpathElement(xpath1Day).click();
+        Teh.waitXpathElement(xpathButtonDropdownDay).click();
+        Teh.waitXpathElement(xpath1Day).click();
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//span[contains(text(),'1')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'1')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Set year of birth.")
     public static void setBirthYear() {
-        TestHelper.waitXpathElement(xpathButtonDropdownYear).click();
-        TestHelper.waitXpathElement(xpath1993Year).click();
+        Teh.waitXpathElement(xpathButtonDropdownYear).click();
+        Teh.waitXpathElement(xpath1993Year).click();
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//span[contains(text(),'1993')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'1993')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Set gender.")
     public static void setGender() {
-        TestHelper.waitXpathElement(xpathRadiobuttonGender).click();
+        Teh.waitXpathElement(xpathRadiobuttonGender).click();
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Click on Terms & Conditions checkbox.")
     public static void agreeWithTCCheckbox() {
-        TestHelper.waitXpathElement(xpathTCCheckbox).click();
+        Teh.waitXpathElement(xpathTCCheckbox).click();
         for (int i = 0; i < 450; i++) {
-            if (TestHelper.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
+            if (Teh.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
                 break;
             }
-            TestHelper.waitMsec(100);
+            Teh.waitMsec(100);
         }
     }
 
     @Step("Submit registration by click on Register button.")
     public static void submitRegistration() {
-        TestHelper.waitXpathElement(xpathButtonSubmitRegistration).click();
+        Teh.waitXpathElement(xpathButtonSubmitRegistration).click();
     }
 
     @Step("Verify that creation of new account is complete.")
     public static void verifyThatAccountIsCreated() {
-        TestHelper.waitXpathElement(xpathAfterRegistrationSentEmailPopUp);
+        Teh.waitXpathElement(xpathAfterRegistrationSentEmailPopUp);
     }
 
     @Step("Verify First Name empty input error message.")
     public static void verifyFirstNameErrorMessage() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter First Name.",
-                    TestHelper.waitXpathElement(xpathFirstNameErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathFirstNameErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Sorry chica, necesitamos un nombre y apellido válidos.",
-                    TestHelper.waitXpathElement(xpathFirstNameErrorMessage).getText());
+                    Teh.waitXpathElement(xpathFirstNameErrorMessage).getText());
         }
     }
 
     @Step("Verify Last Name empty input error message.")
     public static void verifyLastNameErrorMessage() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter Last Name.",
-                    TestHelper.waitXpathElement(xpathLastNameErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathLastNameErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Sorry chica, necesitamos un nombre y apellido válidos.",
-                    TestHelper.waitXpathElement(xpathLastNameErrorMessage).getText());
+                    Teh.waitXpathElement(xpathLastNameErrorMessage).getText());
         }
     }
 
     @Step("Verify Email empty input error message.")
     public static void verifyEmailErrorMessage() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter a valid email address.",
-                    TestHelper.waitXpathElement(xpathEmailErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathEmailErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Sorry chica, necesitamos un correo electrónico válido.",
-                    TestHelper.waitXpathElement(xpathEmailErrorMessage).getText());
+                    Teh.waitXpathElement(xpathEmailErrorMessage).getText());
         }
     }
 
     @Step("Verify Password empty input error message.")
     public static void verifyPasswordErrorMessage() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter a valid password containing at least 8 characters with 1 uppercase letter and 1 number.",
-                    TestHelper.waitXpathElement(xpathPasswordErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathPasswordErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Tu contraseña debe tener 8 caracteres, una mayúscula y un número.",
-                    TestHelper.waitXpathElement(xpathPasswordErrorMessage).getText());
+                    Teh.waitXpathElement(xpathPasswordErrorMessage).getText());
         }
     }
 
     @Step("Verify Password Confirmation empty input error message.")
     public static void verifyPasswordConfirmationErrorMessage() {
-        TestHelper.waitXpathElement(xpathInputConfirmedPassword).click();
-        TestHelper.driver.findElement(By.xpath(xpathRadiobuttonGender)).click();
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        Teh.waitXpathElement(xpathInputConfirmedPassword).click();
+        Teh.driver.findElement(By.xpath(xpathRadiobuttonGender)).click();
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter a valid password containing at least 8 characters with 1 uppercase letter and 1 number.",
-                    TestHelper.waitXpathElement(xpathVerifyPasswordErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathVerifyPasswordErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Tu contraseña debe tener 8 caracteres, una mayúscula y un número.",
-                    TestHelper.waitXpathElement(xpathVerifyPasswordErrorMessage).getText());
+                    Teh.waitXpathElement(xpathVerifyPasswordErrorMessage).getText());
         }
     }
 
     @Step("Verify error message when Date Of Birth is not defined.")
     public static void verifyErrorMessageForNotDefinedDateOfBirth() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
-            Assert.assertEquals("Please enter your date of birth.", TestHelper.waitXpathElement(xpathDateOfBirthErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
+            Assert.assertEquals("Please enter your date of birth.", Teh.waitXpathElement(xpathDateOfBirthErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Necesitamos tu fecha de nacimiento (Es solo para asegurarnos que tienes más de 18 años).",
-                    TestHelper.waitXpathElement(xpathDateOfBirthErrorMessage).getText());
+                    Teh.waitXpathElement(xpathDateOfBirthErrorMessage).getText());
         }
     }
 
     @Step("Verify error message when Gender is not defined.")
     public static void verifyErrorMessageForNotDefinedGender() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please select Gender.",
-                    TestHelper.waitXpathElement(xpathGenderErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathGenderErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Por favor seleccione el género.",
-                    TestHelper.waitXpathElement(xpathGenderErrorMessage).getText());
+                    Teh.waitXpathElement(xpathGenderErrorMessage).getText());
         }
     }
 
     @Step("Verify error message when Terms and Conditions checkbox is not enabled.")
     public static void verifyErrorMessageForNotCheckedTCCheckbox() {
-        if (TestHelper.waitXpathElement(engRegister).isDisplayed()) {
+        if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please read and agree with the Terms and Conditions.",
-                    TestHelper.waitXpathElement(xpathTCErrorMessage).getText());
-        } else if (TestHelper.waitXpathElement(spaRegistrate).isDisplayed()) {
+                    Teh.waitXpathElement(xpathTCErrorMessage).getText());
+        } else if (Teh.waitXpathElement(spaRegistrate).isDisplayed()) {
             Assert.assertEquals("Debes aceptar los términos y condiciones para poder registrarte.",
-                    TestHelper.waitXpathElement(xpathTCErrorMessage).getText());
+                    Teh.waitXpathElement(xpathTCErrorMessage).getText());
         }
     }
 
     @Step("Verify that registration is passed correctly.")
     public static void verifyCompletionOfRegistration() {
-        TestHelper.waitXpathElement("//*[@class='row registration-successful-dialog']");
+        Teh.waitXpathElement("//*[@class='row registration-successful-dialog']");
     }
 }

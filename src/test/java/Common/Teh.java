@@ -1,11 +1,9 @@
 package Common;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -22,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
-public class TestHelper {
+public class Teh {
     public static WebDriver driver;
 
 //Setup and quit of web driver
@@ -217,25 +215,25 @@ public class TestHelper {
     }
 
     public static void moveToIdElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        int width = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("height")) / 2;
         new Actions(driver).moveToElement(driver.findElement(By.id(selector)), width, height).click().build().perform();
     }
 
     public static void moveToXpathElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        int width = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("height")) / 2;
         new Actions(driver).moveToElement(driver.findElement(By.xpath(selector)), width, height).click().build().perform();
     }
 
     public static void moveToCssElementAndClickInCenter(String selector) {
-        int width = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("width")) / 2;
-        int height = Integer.parseInt(TestHelper.waitXpathElement(selector).getCssValue("height")) / 2;
+        int width = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("width")) / 2;
+        int height = Integer.parseInt(Teh.waitXpathElement(selector).getCssValue("height")) / 2;
         new Actions(driver).moveToElement(driver.findElement(By.cssSelector(selector)), width, height).click().build().perform();
     }
 
     public static int stringToInteger(String selector) {
-        int newInt = Integer.parseInt(TestHelper.waitXpathElement(selector).getText());
+        int newInt = Integer.parseInt(Teh.waitXpathElement(selector).getText());
         return newInt;
     }
 
@@ -324,14 +322,14 @@ public class TestHelper {
     //Actions with dropdown
     public static void selectIndexInDropdownXpath(String selector, int number) {
         waitXpathElement(selector);
-        WebElement select = TestHelper.waitXpathElement(selector);
+        WebElement select = Teh.waitXpathElement(selector);
         Select sel = new Select(select);
         sel.selectByIndex(number);
     }
 
     public static void selectVisibleTextInDropdownXpath(String selector, String text) {
         waitXpathElement(selector);
-        WebElement select = TestHelper.waitXpathElement(selector);
+        WebElement select = Teh.waitXpathElement(selector);
         Select sel = new Select(select);
         sel.selectByVisibleText(text);
     }

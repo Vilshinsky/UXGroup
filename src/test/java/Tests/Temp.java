@@ -1,7 +1,7 @@
 package Tests;
 
 import Common.Environments;
-import Common.TestHelper;
+import Common.Teh;
 import PageObjects.*;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
@@ -14,20 +14,20 @@ import ru.yandex.qatools.allure.model.SeverityLevel;
 public class Temp {
     @BeforeClass
     public static void setPrecondition() {
-        TestHelper.runDriverFullscreen("firefox");
+        Teh.runDriverFullscreen("firefox");
         Environments.createMailBox();
         Environments.passRegistration();
-        TestHelper.quit();
+        Teh.quit();
     }
 
     @Before
     public void setUp() {
-        TestHelper.runDriverFullscreen("firefox");
+        Teh.runDriverFullscreen("firefox");
     }
 
     @After
     public void tearDown() {
-        TestHelper.quit();
+        Teh.quit();
     }
 
     @Features("Loves")
@@ -73,4 +73,5 @@ public class Temp {
         ReviewPage.clickOnNextButton();
         ReviewPage.verifyThatNoRateErrorMessageIsDisplayed();
     }
+
 }

@@ -1,6 +1,6 @@
 package Tests;
 
-import Common.TestHelper;
+import Common.Teh;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -27,7 +27,7 @@ public class CrossbrowserDdt {
 
     @Test
     public void multipleTests() {
-        TestHelper.runDriver(browser);
-        TestHelper.quit();
+        Teh.runDriver(browser);
+        Teh.quit();
     }
 }
