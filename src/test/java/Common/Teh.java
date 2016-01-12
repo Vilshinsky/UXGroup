@@ -106,7 +106,7 @@ public class Teh {
     }
 
     public static void waitJqueryInactive() {
-        WebDriverWait waiter = new WebDriverWait(driver, 30);
+        WebDriverWait waiter = new WebDriverWait(driver, 30, 500);
         waiter.until(new Predicate<WebDriver>() {
             public boolean apply(WebDriver input) {
                 return (Boolean) ((JavascriptExecutor)driver).executeScript("return jQuery.active == 0");
@@ -145,6 +145,12 @@ public class Teh {
             }
             waitMsec(100);
         }
+        WebDriverWait waiter = new WebDriverWait(driver, 30, 500);
+        waiter.until(new Predicate<WebDriver>() {
+            public boolean apply(WebDriver input) {
+                return (Boolean) ((JavascriptExecutor)driver).executeScript("return jQuery.active == 0");
+            }
+        });
         return driver.findElement(By.xpath(selector));
     }
 
