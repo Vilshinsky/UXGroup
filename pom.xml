@@ -53,9 +53,13 @@
                 <version>2.18.1</version>
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
+                    <parallel>classes</parallel>
+                    <threadCount>3</threadCount>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
+                    <parallel>methods</parallel>
+                    <threadCount>3</threadCount>
                     <properties>
                         <property>
                             <name>listener</name>

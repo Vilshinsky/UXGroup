@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -261,6 +262,19 @@ public class Teh {
         return newInt;
     }
 
+    //Wait until file is downloaded
+    public static void fileIsDonwloaded(String path) {
+        FluentWait<File> waiter = new FluentWait<File>(new File(path));
+        waiter.withTimeout(30, TimeUnit.SECONDS);
+        waiter.pollingEvery(500, TimeUnit.MILLISECONDS);
+        waiter.until(new Predicate<File>() {
+            @Override
+            public boolean apply(File input) {
+                return input.exists() && input.length() > 0;
+            }
+        });
+    }
+
     //Alert handler and windows switcher
     public static boolean checkIsAlertPresent() {
         try {
@@ -283,7 +297,7 @@ public class Teh {
         String originalWindow = driver.getWindowHandle();
         final Set<String> oldWindowsSet = driver.getWindowHandles();
         waitXpathElement(xpath).click();
-        String newWindow = (new WebDriverWait(driver, 10))
+        String newWindow = (new WebDriverWait(driver, 30))
                 .until(new ExpectedCondition<String>() {
                            public String apply(WebDriver driver) {
                                Set<String> newWindowsSet = driver.getWindowHandles();
