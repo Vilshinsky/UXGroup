@@ -35,7 +35,7 @@ public class ArticlePage {
     @Step("Verify that comment appears on the page.")
     public static void verifyThatCommentIsAdded() {
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath(xpathComment)).size() > 0) {
+            if (Teh.driver().findElements(By.xpath(xpathComment)).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -83,7 +83,7 @@ public class ArticlePage {
     @Step("Verify that current page is article")
     public static void verifyThatCurrentPageIsArticle() {
         Teh.waitXpathElement(HomePage.xpathButtonMyProfile);
-        Assert.assertEquals("Selenium Article", Teh.driver.findElement(By.xpath(xpathTitlesArticle)).getText());
+        Assert.assertEquals("Selenium Article", Teh.driver().findElement(By.xpath(xpathTitlesArticle)).getText());
     }
 
     @Step("Add Love in article as unauthorized user.")
@@ -95,7 +95,7 @@ public class ArticlePage {
     @Step("Verify that redirection to the authorization form is happened.")
     public static void verifyRedirectionToLogInAfterTryToAddLove() {
         Teh.waitXpathElement(AuthorizationPage.xpathInputLogin);
-        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
+        Assert.assertEquals(true, Teh.driver().findElement(By.xpath(AuthorizationPage.xpathInputLogin)).isDisplayed());
     }
 
     @Step("Verify that comment block doesn't available to unauthorized user.")
@@ -107,7 +107,7 @@ public class ArticlePage {
     @Step("Verify that instead the comment block unauthorized user sees Sign In and Register buttons.")
     public static void verifyAvailabilityOfSignInAndRegisterButtonsInsteadCommentsBlock() {
         Teh.waitXpathElement(xpathCommentsBlockUnauthorized);
-        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
-        Assert.assertEquals(true, Teh.driver.findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
+        Assert.assertEquals(true, Teh.driver().findElement(By.xpath(xpathCommentsBlockLoginUnauthorized)).isDisplayed());
+        Assert.assertEquals(true, Teh.driver().findElement(By.xpath(xpathCommentsBlockRegisterUnauthorized)).isDisplayed());
     }
 }

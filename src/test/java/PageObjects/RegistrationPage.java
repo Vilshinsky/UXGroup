@@ -108,7 +108,7 @@ public class RegistrationPage {
         Teh.waitXpathElement(xpathButtonDropdownMonth).click();
         Teh.waitXpathElement(xpathJanuaryMonth).click();
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'Jan')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//span[contains(text(),'Jan')]")).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -120,7 +120,7 @@ public class RegistrationPage {
         Teh.waitXpathElement(xpathButtonDropdownDay).click();
         Teh.waitXpathElement(xpath1Day).click();
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'1')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//span[contains(text(),'1')]")).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -132,7 +132,7 @@ public class RegistrationPage {
         Teh.waitXpathElement(xpathButtonDropdownYear).click();
         Teh.waitXpathElement(xpath1993Year).click();
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath("//span[contains(text(),'1993')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//span[contains(text(),'1993')]")).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -143,7 +143,7 @@ public class RegistrationPage {
     public static void setGender() {
         Teh.waitXpathElement(xpathRadiobuttonGender).click();
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'radio-wrap')]")).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -154,7 +154,7 @@ public class RegistrationPage {
     public static void agreeWithTCCheckbox() {
         Teh.waitXpathElement(xpathTCCheckbox).click();
         for (int i = 0; i < 450; i++) {
-            if (Teh.driver.findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//*[contains(@class,'checked') and contains(@class,'checkbox-wrap')]")).size() > 0) {
                 break;
             }
             Teh.waitMsec(100);
@@ -218,7 +218,7 @@ public class RegistrationPage {
     @Step("Verify Password Confirmation empty input error message.")
     public static void verifyPasswordConfirmationErrorMessage() {
         Teh.waitXpathElement(xpathInputConfirmedPassword).click();
-        Teh.driver.findElement(By.xpath(xpathRadiobuttonGender)).click();
+        Teh.driver().findElement(By.xpath(xpathRadiobuttonGender)).click();
         if (Teh.waitXpathElement(engRegister).isDisplayed()) {
             Assert.assertEquals("Please enter a valid password containing at least 8 characters with 1 uppercase letter and 1 number.",
                     Teh.waitXpathElement(xpathVerifyPasswordErrorMessage).getText());

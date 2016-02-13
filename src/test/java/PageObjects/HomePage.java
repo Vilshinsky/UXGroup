@@ -50,7 +50,7 @@ public class HomePage {
 
     @Step("Verify that footer have 8 social buttons.")
     public static void verifyThatFooterHaveEightSocialButtons() {
-        Assert.assertEquals(8, Teh.driver.findElements(By.xpath(xpathLinksSocialOnFooter)).size());
+        Assert.assertEquals(8, Teh.driver().findElements(By.xpath(xpathLinksSocialOnFooter)).size());
     }
 
     @Step("Verify that hamburger menu button is exist.")

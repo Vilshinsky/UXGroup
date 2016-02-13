@@ -10,7 +10,7 @@ public class Learning {
     public void ssertionTest() {
         Teh.runDriver("firefox");
         Teh.get("http://twitter.com");
-        Assert.assertEquals("Page title is not expected.", "Twitt", Teh.driver.getTitle());
+        Assert.assertEquals("Page title is not expected.", "Twitt", Teh.driver().getTitle());
         Teh.quit();
     }
 }
