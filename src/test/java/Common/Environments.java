@@ -34,7 +34,7 @@ public class Environments {
     public static void confirmRegistrationInMail() {
         Teh.get("http://www.mfsa.info/mail/" + emailValue);
         for (int i = 0; i < 60; i++) {
-            if (Teh.driver.findElements(By.xpath("//td[contains(text(),'White Label')]")).size() > 0) {
+            if (Teh.driver().findElements(By.xpath("//td[contains(text(),'White Label')]")).size() > 0) {
                 break;
             }
             Teh.waitXpathElement("//*[@value='Check']").click();
